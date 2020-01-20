@@ -12,6 +12,7 @@ var Movies = new mongoose.Schema({
   Country: String,
   Discription: String,
   Release_Date: String,
+  MovieImage:String,
   Available_Dates: {
     Day1: {
       Date: String,
