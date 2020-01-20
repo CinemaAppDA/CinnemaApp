@@ -1,3 +1,59 @@
-<p>
-  movie-details works!
-</p>
+<div class ="container" style = "margin:30px">
+
+  <div class="row">
+    <div class="col"> <!--row  for movie details...-->
+        <form>
+          <div class="view overlay">
+            <video class="video-fluid z-depth-1" autoplay loop controls muted>
+              <source src="https://mdbootstrap.com/img/video/Sail-Away.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="card-body">
+              <h4 class="card-title font-weight-bold"><a>Movie Title</a></h4>
+              <p class="mb-2">Description:</p>
+              <p class="mb-2">Actors:</p>
+              <p class="mb-2">Directors:</p>
+            </div>
+        </form>
+    </div>
+
+    <div class="col"><!--row  for booking options...--> 
+      <form>
+          <h6 class="lead"><strong>Book A Seat</strong></h6>
+          <div class="md-form">
+              <input type="date" name ="bookingDate" [(ngModel)]="bookingDate"id="input" class="form-control" mdbInput>
+              <label for="input">Choose your date</label>
+          </div>
+          <form>
+              <label class="checkbox-inline">
+                <input type="checkbox" name="morningCheck" [(ngModel)]="morningCheck" id= "morning">09h00 - 12h00
+              </label>
+              <br>
+              <label class="checkbox-inline">
+                <input type="checkbox" name="afternoonCheck" [(ngModel)]="afternoonCheck" id = "afternoon">14h00 - 17h00
+              </label>
+              <br>
+              <label class="checkbox-inline">
+                <input type="checkbox"name="eveningCheck" [(ngModel)]="eveningCheck" id = "evening">18h00 - 21h00
+              </label>
+              <br>
+              <div *ngIf="seatStatus" class="alert alert-danger" role="alert">
+                  {{seatStatus}}
+                </div>
+              <label><strong >Seats available:{{Seats}}</strong></label>
+              <br>
+              <input type="number" name= "mSeats" [(ngModel)]= "mSeats" placeholder="maximum of seats" max="20">
+              <br>
+              <button type="button" class="btn btn-primary btn-block" (click)="book()" >Book Now</button>
+            </form>
+            
+      </form>
+    </div> 
+
+    <div *ngIf="booked" class="alert alert-info" role="alert">
+         <p> Congrats ! you have successfully booked:</p>
+         <p>{{MovieTitle}} on the {{bookingDate}} for {{mSeats}} seats </p>
+      </div>  
+  </div>
+
+</div> 

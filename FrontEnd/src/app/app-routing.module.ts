@@ -4,13 +4,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 
-
 // this constant default routes to Home, and also send all unknown path to Home
 const routes: Routes = [
 
   { path: '', component: HomeComponent },
-  { path: 'Movies', component: MovieDetailsComponent }
+  { path: 'Movies', component: MovieDetailsComponent },
   
+
+  { path: 'home', component: HomeComponent }
+ 
+
 ];
 
 @NgModule({
