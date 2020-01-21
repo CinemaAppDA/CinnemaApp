@@ -1,37 +1,33 @@
-const express = require('express') ; 
+const express = require('express');
 const app = express();
-const morgan = require('morgan');
+const MovieRoute = require('./Routes/Movies');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const route = require('./routes/route');
 
 
 
-
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-
-//connect DB
-
-app.use('/route' , route)
-
-//Connect to mongoDB
-var mongoDB = 'mongodb://localhost:27017/movieDB';
-mongoose.connect(mongoDB);
-
-//test connection
-mongoose.connection.on('connected', ()=>{
-    console.log('connect to db mongodb @ 27017');
+/**Testing if get method works */
+app.get('/',(req,res)=>{
+    res.send('I am running');
+    console.log("rtyuio")
 });
 
-mongoose.connection.on('error', (err)=>{
 
-    if(err)
-    {
-        console.log('Error in the database connection');
+app.use('/cinema/movies',MovieRoute);
+//app.use("/cinema/movies/id", MovieRoute);
 
-    }
-    
+
+/**Database connection*/
+mongoose.connect( 'mongodb://localhost:27017/movieDB',(error,db)=>{
+/**Checking the connection*/
+  useNewUrlParser: true;
+  useUnifiedTopogy: true;
+  console.log('Connected to database')
 });
 
-module.exports = app;
+
+
+
+
+module.exports = app; /**exporting app file */
+
+
